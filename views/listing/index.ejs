@@ -1,0 +1,37 @@
+<% layout("layout/biolerplate") %>
+
+<h3>All Listings</h3>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <% for (let listing of allListing) { %>
+    <div class="col mb-4">
+      <div class="card h-100 position-relative">
+        <a href="/listing/<%= listing._id %>" class="text-decoration-none text-dark">
+
+          <% if (listing.image && listing.image.url) { %>
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+          <% } else { %>
+            <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="no_image" style="height: 20rem;">
+          <% } %>
+
+          <!-- Styling overlay, useful for gradient effects, text overlays, etc. -->
+          <div class="card-img-overlay">
+            <!-- Optional: Put content here like title or price if you want it over the image -->
+          </div>
+
+          <div class="card-body bg-white bg-opacity-75">
+            <p class="card-text">
+              <strong><%= listing.title || "No Title" %></strong><br />
+              <% if (listing.price) { %>
+                &#x20B9; <%= listing.price.toLocaleString("en-IN") %>
+              <% } else { %>
+                <em>Price not available</em>
+              <% } %>
+            </p>
+          </div>
+
+        </a>
+      </div>
+    </div>
+  <% } %>
+</div>
